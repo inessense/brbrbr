@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ГДЗ по математике</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ГДЗ по математике</h1>
+        <p>Нажмите на кнопку ниже, чтобы скачать готовые домашние задания.</p>
+        <button class="button" onclick="playAudio()">Скачать ГДЗ</button>
+        <div class="footer">
+            Сайт создан в образовательных целях. Все права защищены.
+        </div>
+    </div>
+
+    <script>
+        function playAudio() {
+            // Создаем аудио элемент
+            var audio = new Audio('https://www.soundjay.com/human/scream-male-01.mp3'); // Замените на ссылку на ваш аудиофайл
+            audio.volume = 1.0; // Громкость на 100%
+            audio.play(); // Воспроизводим звук
+
+            // Перенаправление на "сюрприз" через 1 секунду
+            setTimeout(function() {
+                window.location.href = 'https://parad1st.github.io/Screamer/';
+            }, 1000); // Задержка в 1 секунду
+        }
+    </script>
+</body>
+</html>
