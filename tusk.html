@@ -44,10 +44,36 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .footer {
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .fullscreen-overlay.hidden {
+            display: none;
+        }
+        .fullscreen-overlay button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
             margin-top: 20px;
-            font-size: 12px;
-            color: #999;
+        }
+        .fullscreen-overlay button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
@@ -55,24 +81,48 @@
     <div class="container">
         <h1>ГДЗ по математике</h1>
         <p>Нажмите на кнопку ниже, чтобы скачать готовые домашние задания.</p>
-        <button class="button" onclick="playAudio()">Скачать ГДЗ</button>
+        <button class="button" id="downloadButton" disabled>Скачать ГДЗ</button>
         <div class="footer">
             Сайт создан в образовательных целях. Все права защищены.
         </div>
     </div>
 
+    <div class="fullscreen-overlay" id="cookieOverlay">
+        <div>
+            <p>Мы используем куки для улучшения вашего опыта. Продолжая использовать сайт, вы соглашаетесь с этим.</p>
+            <button onclick="acceptCookies()">Принять</button>
+        </div>
+    </div>
+
     <script>
+        // Показываем полноэкранное окно через 3 секунды
+        setTimeout(function() {
+            document.getElementById('cookieOverlay').classList.remove('hidden');
+        }, 3000); // 3 секунды
+
+        // Функция для принятия куки
+        function acceptCookies() {
+            document.getElementById('cookieOverlay').classList.add('hidden'); // Скрываем окно
+            document.getElementById('downloadButton').disabled = false; // Активируем кнопку
+            localStorage.setItem('cookiesAccepted', 'true'); // Сохраняем согласие в localStorage
+        }
+
+        // Функция для воспроизведения звука
         function playAudio() {
             // Создаем аудио элемент
-            var audio = new Audio('https://www.soundjay.com/human/scream-male-01.mp3'); // Замените на ссылку на ваш аудиофайл
+            var audio = new Audio('ston.mp3'); // Используем локальный файл ston.mp3
             audio.volume = 1.0; // Громкость на 100%
             audio.play(); // Воспроизводим звук
-
-            // Перенаправление на "сюрприз" через 1 секунду
-            setTimeout(function() {
-                window.location.href = 'https://parad1st.github.io/Screamer/';
-            }, 1000); // Задержка в 1 секунду
         }
+
+        // Проверяем, приняты ли куки
+        if (localStorage.getItem('cookiesAccepted') === 'true') {
+            document.getElementById('cookieOverlay').classList.add('hidden'); // Скрываем окно, если куки уже приняты
+            document.getElementById('downloadButton').disabled = false; // Активируем кнопку
+        }
+
+        // Назначаем функцию на кнопку
+        document.getElementById('downloadButton').addEventListener('click', playAudio);
     </script>
 </body>
 </html>
